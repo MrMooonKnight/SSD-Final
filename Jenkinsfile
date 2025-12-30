@@ -3,13 +3,14 @@ pipeline {
     
     stages {
         stage('Install Dependencies') {
-            steps {
-                echo 'Installing dependencies...'
-                // Create venv and install requirements
-                bat 'python -m venv venv'
-                bat 'venv\\Scripts\\activate.bat && pip install -r requirements.txt'
-            }
-        }
+                    steps {
+                        echo 'Installing dependencies...'
+                        // CAUTION: The path has spaces, so we wrap the inner path in double quotes ""
+                        // AND we use double backslashes \\
+                        bat '"C:\\Program Files\\Python314\\python.exe" -m venv venv'
+                        bat 'venv\\Scripts\\activate.bat && pip install -r requirements.txt'
+                    }
+                }
         
         stage('Run Unit Tests') {
             steps {
